@@ -14,6 +14,8 @@ import Temai from './TemaiPage';
 import MinePage from './MinePage';
 import PopularPage from './PopularPage';
 import TrendingPage from './TrendingPage';
+import NavigationUtil from '../routes/RouterUtil';
+
 const tabBarOptions = {
   activeTintColor: '#222222',
   inactiveTintColor: '#B8B8B8',
@@ -78,6 +80,7 @@ export default class HomePage extends Component {
     )
   }
   render() {
+    NavigationUtil.navigation = this.props.navigation;
     const Tab = createAppContainer(this._tabNavigator());
     return (
       <Tab />
