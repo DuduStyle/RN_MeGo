@@ -1,0 +1,1 @@
+react-native run-android 启动本地服务器
