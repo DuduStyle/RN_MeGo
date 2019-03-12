@@ -1,19 +1,20 @@
 export default class NavigationUtil {
-  static goBack(navigation){
+  static goBack(navigation) {
     navigation.goBack();
   }
-  static goPage(params, page){
+  static goPage(page, params) {
     const navigation = NavigationUtil.navigation;
-    if(!navigation) {
-      console.log('2222')
+    // const { navigation } = params;
+    if (!navigation) {
+      console.log("navigation----isunull");
       return;
     }
     navigation.navigate(page, {
       ...params
     });
   }
-  static resetToHomePage(params){
+  static resetToHomePage() {
     const navigation = NavigationUtil.navigation;
-    navigation.navigate('Main');
+    navigation.navigate("Home");
   }
 }

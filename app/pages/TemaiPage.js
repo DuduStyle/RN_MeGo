@@ -7,64 +7,57 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
-import React, {Component} from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
-import NavigationUtil from '../routes/RouterUtil';
+import React, { Component } from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createMaterialTopTabNavigator
+} from "react-navigation";
+import ShiTu from "./Home/ShiTu";
+import BuDeJie from "./Home/BuDeJie";
+import navigationUtil from "../routes/RouterUtil";
 
-
-export default class MinePage extends Component {
+type Props = {};
+export default class GankTab extends Component<Props> {
   render() {
-    const TabNavigator = createAppContainer(createMaterialTopTabNavigator({
-      TeaminTab1:{
-        screen: TeaminTab,
-        navigationOptions: {
-          title:'限时特卖'
+    const TabNavigator = createAppContainer(
+      createMaterialTopTabNavigator({
+        Gank: {
+          screen: BuDeJie,
+          navigationOptions: {
+            title: "限时特卖"
+          }
+        },
+        ShiTu: {
+          screen: ShiTu,
+          navigationOptions: {
+            title: "预告会场"
+          }
         }
-      },
-      TeaminTab2:{
-        screen: TeaminTab,
-        navigationOptions: {
-          title:'预告会场'
-        }
-      }
-    }))
+      })
+    );
     return (
-      <View style={{flex:1}}>
-        <Text>这是轮播图</Text>
+      <View style={{ flex: 1 }}>
+        <TemaiPage />
         <TabNavigator />
       </View>
     );
   }
 }
-class TeaminTab extends Component {
+class TemaiPage extends Component<Props> {
   render() {
-    const { tabLael } = this.props;
     return (
-      <View style={styles.container}>
-        <Text>{tabLael}</Text>
-        <Text
-        onPress={()=>{
-          NavigationUtil.goPage({
-            navigation:this.props.navigation
-          }, 'DetailPage')
-        }}
-      >
-        条跳转到详情页
-        </Text>
+      <View style={{ flex: 1 }}>
+        <TouchableOpacity
+          onPress={() => {
+            // this.props.navigation.navigate("DetailPage");
+            navigationUtil.goPage("DetailPage");
+          }}
+        >
+          <Text>这是轮播图2222</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  slider: {
-    height: 50
-  }
-
-});

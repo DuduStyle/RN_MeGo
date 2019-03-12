@@ -1,25 +1,24 @@
-import React, {Component} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-import NavigationUtil from '../routes/RouterUtil';
+import NavigationUtil from "../routes/RouterUtil";
 
 type Props = {};
 export default class WelcomePage extends Component<Props> {
   componentDidMount = () => {
     this.timer = setTimeout(() => {
-      NavigationUtil.resetToHomePage({
-        navigation:this.props.navigation
-      })
+      NavigationUtil.resetToHomePage();
     }, 2000);
-  }
-  componentWillUnmount(){
-    this.timer&&clearTimeout(this.timer);
+  };
+  componentWillUnmount() {
+    this.timer && clearTimeout(this.timer);
   }
   render() {
+    NavigationUtil.navigation = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>欢迎</Text>
-        <Image style={styles.item}   source={require('../images/welcome.png')}></Image>
+        <Image style={styles.item} source={require("../images/welcome.png")} />
       </View>
     );
   }
@@ -28,10 +27,8 @@ export default class WelcomePage extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  
-
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  }
 });
